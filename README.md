@@ -12,9 +12,9 @@
 > * It supports custom additional views.
 > * Custom UI style support.
  
--------------
+###Preview(gif)
 
-![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser1.gif?raw=false)![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser2.gif?raw=false)
+![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser1.gif?raw=false) ![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser3.gif?raw=false)![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser2.gif?raw=false)
 
 ###Update
 
