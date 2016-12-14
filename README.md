@@ -1,12 +1,14 @@
-#LCPhotoBrowser 
+##LCPhotoBrowser 
 
 ![badge-pod] ![badge-languages] ![badge-platforms] ![badge-mit]
 
-##Preview
+###Preview
 
-###Gif 1
+#####Gif 1
+ ![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser1.gif?raw=false)
 
-###Gif 2
+#####Gif 2
+ ![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser2.gif?raw=false)
 
 
 
