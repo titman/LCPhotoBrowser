@@ -113,6 +113,7 @@
     self.imageView.userInteractionEnabled = YES;
     self.imageView.frame                  = self.bounds;
     self.imageView.center                 = CGPointMake(self.frame.size.width / 2., self.frame.size.height / 2.);
+    self.imageView.layer.masksToBounds    = YES;
     [self addSubview:self.imageView];
     
     
@@ -461,9 +462,6 @@
         // .
         [self.imageViews addObject:imageView];
     }];
-    
-    
-    [self setupImageViewForIndex:self.currentIndex];
 }
 
 -(void) addRecognizersOnPhotoView:(LCPhotoView *)photoView
@@ -576,6 +574,8 @@
         self.backgroundBlurView.alpha = 1;
     }];
     
+    [self setupImageViewForIndex:self.currentIndex];
+    
     if (self.firstShow)
         [self showFirstImageView];
 }
@@ -603,12 +603,18 @@
     
     [self animations:^{
         
+        CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"cornerRadius"];
+        animation.duration = self.animationDuration;
+
+        
         currentPhotoView.zoomScale = 1.;
         currentPhotoView.imageView.frame     = rect;
         currentPhotoView.progressView.hidden = YES;
         
         currentPhotoView.imageView.layer.cornerRadius = currentPhotoView.item.referenceView.layer.cornerRadius;
         currentPhotoView.imageView.contentMode        = currentPhotoView.item.referenceView.contentMode;
+        
+        [currentPhotoView.imageView.layer addAnimation:animation forKey:@"cornerRadius"];
         
     } completion:^(BOOL finished) {
         
@@ -656,18 +662,30 @@
     CGRect targetFrame = currentPhotoView.imageView.frame;
     UIViewContentMode contentMode = currentPhotoView.imageView.contentMode;
     
+
     currentPhotoView.imageView.frame              = rect;
+    
+    CGFloat cor = item.referenceView.layer.cornerRadius;
+    
     currentPhotoView.imageView.layer.cornerRadius = item.referenceView.layer.cornerRadius;
     currentPhotoView.imageView.contentMode        = item.referenceView.contentMode;
-    
+
 
     [self animations:^{
         
+        CABasicAnimation * cornerRadiusAnimation = [CABasicAnimation animationWithKeyPath:@"cornerRadius"];
+        cornerRadiusAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        cornerRadiusAnimation.fromValue      = @(item.referenceView.layer.cornerRadius);
+        cornerRadiusAnimation.toValue        = @(0);
+        cornerRadiusAnimation.duration       = self.animationDuration;
+        [currentPhotoView.imageView.layer addAnimation:cornerRadiusAnimation forKey:@"cornerRadius"];
+        
+        currentPhotoView.imageView.layer.cornerRadius = 0;
+    
         currentPhotoView.imageView.center             = self.center;
         currentPhotoView.imageView.bounds             = targetFrame;
-        currentPhotoView.imageView.layer.cornerRadius = 0;
         currentPhotoView.imageView.contentMode        = contentMode;
-        
+    
     } completion:^(BOOL finished) {
        
         self.firstShow = NO;

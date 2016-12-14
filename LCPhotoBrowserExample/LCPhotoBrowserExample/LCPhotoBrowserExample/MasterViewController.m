@@ -57,23 +57,24 @@
 {
     NSMutableArray * photoItems = [NSMutableArray array];
     
-    [self.objects enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.objects enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
+        UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]];
+
         LCPhotoItem * item = [[LCPhotoItem alloc] init];
         item.placeholder   = [UIImage imageNamed:obj[0]];
         item.urlString     = obj[1];
-        
-        if (idx == tap.view.tag) item.referenceView = tap.view;
-
+        item.referenceView = cell.imageView;
+    
         [photoItems addObject:item];
     }];
     
     LCPhotoBrowser * browser     = [[LCPhotoBrowser alloc] init];
     browser.items                = photoItems;
-    browser.currentIndex         = tap.view.tag;
+    browser.currentIndex         = tap.view.tag - 1;
     browser.loadingStyle         = LCPhotoBrowserLoadingStyleProgress;
     browser.backgroundStyle      = LCPhotoBrowserBackgroundStyleBlur;
-    browser.backgroundBlurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    browser.backgroundBlurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     [browser show];
 }
 
@@ -109,8 +110,10 @@
     NSArray * object = self.objects[indexPath.row];
     cell.textLabel.text = object[1];
     cell.imageView.image = [UIImage imageNamed:object[0]];
-    cell.imageView.tag = indexPath.row;
+    cell.imageView.tag = indexPath.row + 1;
     cell.imageView.userInteractionEnabled = YES;
+    cell.imageView.layer.cornerRadius = 22;
+    cell.imageView.layer.masksToBounds = YES;
     
     if (cell.imageView.gestureRecognizers.count) {
         [cell.imageView removeGestureRecognizer:cell.imageView.gestureRecognizers.firstObject];
