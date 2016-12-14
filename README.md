@@ -20,6 +20,7 @@
 
  - 1.1 
    > Fix current index problem.
+   
    > Fix problem caused by cornerRadius of referenceView.
 
  - 1.0 
