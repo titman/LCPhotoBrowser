@@ -9,6 +9,7 @@
  * It supports thirdparty cache component.
  * Delete and insert photos.
  * Long press gesture.
+ * It supports custom additional views.
  
 ###Preview
 
