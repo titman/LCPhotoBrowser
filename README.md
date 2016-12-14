@@ -18,13 +18,12 @@
 
 ###Update
 
- - 1.1 
-   > Fix current index problem.
-   
-   > Fix problem caused by cornerRadius of referenceView.
+ - 1.1
+    * Fix current index problem.
+    * Fix problem caused by cornerRadius of referenceView. 
+ - 1.0
+    * First commit.
 
- - 1.0 
-   > First commit.
 
 [badge-platforms]: https://img.shields.io/badge/platforms-iOS-lightgrey.svg
 [badge-pod]: https://img.shields.io/cocoapods/v/LCPhotoBrowser.svg?label=version
