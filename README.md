@@ -4,12 +4,13 @@
 
 ###Features
  * It supports multiple photos.
- * It supports zoom with gestures.
+ * It supports zoom and gestures.
  * It supports GIF.
  * It supports thirdparty cache component.
  * Delete and insert photos.
  * Long press gesture.
  * It supports custom additional views.
+ * Custom UI style support.
  
 ###Preview
 
