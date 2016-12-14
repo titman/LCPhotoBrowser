@@ -1,4 +1,4 @@
-#LCPhotoBrowser
+<center>#LCPhotoBrowser<\center>
 
 ![badge-pod] ![badge-languages] ![badge-platforms] ![badge-mit]
 
