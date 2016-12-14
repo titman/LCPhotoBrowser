@@ -14,7 +14,8 @@
  
 ###Preview (GIF)
 --------------
-![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser1.gif?raw=false)  ![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser3.gif?raw=false)![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser2.gif?raw=false)  ![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser4.gif?raw=false)
+![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser1.gif?raw=false)  ![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser3.gif?raw=false)
+![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser2.gif?raw=false)  ![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser4.gif?raw=false)
 --------------
 ###Update
 
