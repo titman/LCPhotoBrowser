@@ -1,14 +1,12 @@
-<center>#LCPhotoBrowser<\center>
+#LCPhotoBrowser 
 
 ![badge-pod] ![badge-languages] ![badge-platforms] ![badge-mit]
 
+##Preview
 
+###Gif 1
 
-
-
-
-
-
+###Gif 2
 
 
 
