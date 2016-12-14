@@ -2,13 +2,17 @@
 
 ![badge-pod] ![badge-languages] ![badge-platforms] ![badge-mit]
 
+###Features
+ * It supports multiple photos.
+ * It supports zoom with gestures.
+ * It supports GIF.
+ * It supports thirdparty cache component.
+ * Delete and insert photos.
+ * Long press gesture.
+ 
 ###Preview
 
-#####Gif 1
- ![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser1.gif?raw=false)
-
-#####Gif 2
- ![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser2.gif?raw=false)
+![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser1.gif?raw=false)![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser2.gif?raw=false)
 
 
 
