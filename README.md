@@ -13,10 +13,34 @@
 > * Custom UI style support.
  
 ###Preview (GIF)
---------------
+-
 ![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser1.gif?raw=false)  ![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser3.gif?raw=false)
 ![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser2.gif?raw=false)  ![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser4.gif?raw=false)
---------------
+-
+
+###LCPhotoBrowser + SDWebImageCache
+
+```swift
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+
+    SDImageCache * imageCache = [SDWebImageManager sharedManager].imageCache;
+    
+    LCPhotoBrowserActionTransfer.share.downloadDidFinished = ^(NSString * urlString, UIImage * image){
+        
+        [imageCache storeImage:image forKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:urlString]]];
+    };
+    
+    LCPhotoBrowserActionTransfer.share.readImageFromCache = ^UIImage *(NSString * urlString){
+        
+        NSString * key = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:urlString]];
+        
+        UIImage * image = [imageCache imageFromDiskCacheForKey:key];
+        
+        return image;
+    };
+}
+```
+
 ###Update
 
  - 1.1
