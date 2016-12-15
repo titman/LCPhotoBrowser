@@ -20,7 +20,7 @@
 
 ###LCPhotoBrowser + SDWebImageCache
 
-```swift
+```objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
     SDImageCache * imageCache = [SDWebImageManager sharedManager].imageCache;
