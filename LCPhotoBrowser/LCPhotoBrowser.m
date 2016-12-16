@@ -106,7 +106,7 @@
     self.showsVerticalScrollIndicator   = NO;
     self.showsHorizontalScrollIndicator = NO;
     self.contentSize                    = self.bounds.size;
-
+    
     
     self.imageView                        = [[UIImageView alloc] init];
     self.imageView.contentMode            = UIViewContentModeScaleAspectFit;
@@ -114,6 +114,7 @@
     self.imageView.frame                  = self.bounds;
     self.imageView.center                 = CGPointMake(self.frame.size.width / 2., self.frame.size.height / 2.);
     self.imageView.layer.masksToBounds    = YES;
+    self.imageView.clipsToBounds          = YES;
     [self addSubview:self.imageView];
     
     
@@ -122,7 +123,7 @@
     self.progressView.tintColor      = [UIColor whiteColor];
     self.progressView.trackTintColor = [UIColor darkGrayColor];
     self.progressView.center = self.imageView.center;
-
+    
     CGRect progressFrame     = self.progressView.frame;
     progressFrame.size.width = 128.0f;
     
@@ -158,7 +159,7 @@
     (scrollView.bounds.size.height - scrollView.contentSize.height) * 0.5 : 0.0;
     
     self.imageView.center = CGPointMake(scrollView.contentSize.width * 0.5 + offsetX,
-                                 scrollView.contentSize.height * 0.5 + offsetY);
+                                        scrollView.contentSize.height * 0.5 + offsetY);
 }
 
 
@@ -168,7 +169,7 @@
 -(void) removeFromSuperview
 {
     [self cancelTimer];
-
+    
     [super removeFromSuperview];
 }
 
@@ -192,12 +193,12 @@
     if (self.item) return;
     
     _item = item;
-
+    
     // Get current image.
     if (item.placeholder) [self changeImage:item.placeholder];
     else if ([item.referenceView isKindOfClass:[UIImageView class]]) [self changeImage:((UIImageView *)item.referenceView).image];
     else if ([item.referenceView isKindOfClass:[UIButton class]])    [self changeImage:((UIButton *)item.referenceView).currentImage];
-
+    
     UIImage * image = nil;
     
     // Load cache from others.
@@ -213,13 +214,13 @@
         
         // Downloading
         self.taskCache = [LCPhotoBrowserDownloader downloadImageForURL:[NSURL URLWithString:self.item.urlString] completion:^(UIImage * _Nullable image) {
-           
+            
             @normally(self);
             
             if (image) {
                 
                 [self cancelTimer];
-
+                
                 CATransition * transition = [CATransition animation];
                 transition.type           = kCATransitionFade;
                 transition.duration       = 0.25;
@@ -272,11 +273,11 @@
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerHandler) userInfo:nil repeats:YES];
     
     [UIView animateWithDuration:0.25 animations:^{
-       
+        
         self.progressView.alpha          = 1;
         self.activityIndicatorView.alpha = 1;
     }];
-
+    
     self.maximumZoomScale = 1;
 }
 
@@ -321,7 +322,7 @@
 @end
 
 #pragma mark - LCPhotoItem
-#pragma mark - 
+#pragma mark -
 
 @implementation LCPhotoItem
 
@@ -372,7 +373,7 @@
 -(instancetype) init
 {
     if(self = [super initWithFrame:CGRectZero]){
-    
+        
         [self initSelf];
     }
     
@@ -502,13 +503,13 @@
     
     
     [self.imageViews enumerateObjectsUsingBlock:^(LCPhotoView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-       
+        
         CGFloat x = self.imageViewMargin + idx * (self.imageViewMargin * 2 + w);
         obj.frame = CGRectMake(x, y, w, h);
         obj.tag = idx;
     }];
     
-
+    
     _scrollView.contentSize   = CGSizeMake(_scrollView.subviews.count * _scrollView.frame.size.width, 0);
     _scrollView.contentOffset = CGPointMake(self.currentIndex * _scrollView.frame.size.width, 0);
 }
@@ -541,7 +542,7 @@
 -(void) photoLongPressAction:(UILongPressGestureRecognizer *)longPress
 {
     LCPhotoView * photoView = (LCPhotoView *)longPress.view;
-
+    
     if (self.longPressAction) self.longPressAction(photoView, photoView.tag);
 }
 
@@ -550,7 +551,7 @@
     LCPhotoView * imageView = self.imageViews[index];
     
     self.currentIndex = index;
-
+    
     imageView.item = self.items[index];
     
     
@@ -569,7 +570,7 @@
     [window addSubview:self];
     
     [UIView animateWithDuration:self.animationDuration animations:^{
-       
+        
         self.backgroundView.alpha     = 1;
         self.backgroundBlurView.alpha = 1;
     }];
@@ -583,7 +584,7 @@
 -(void) hide
 {
     LCPhotoView * currentPhotoView = self.imageViews[self.currentIndex];
-
+    
     if(!currentPhotoView.item.referenceView) {
         
         [self animations:^{
@@ -591,7 +592,7 @@
             self.alpha = 0;
             
         } completion:^(BOOL finished) {
-           
+            
             [self removeFromSuperview];
         }];
         
@@ -605,7 +606,7 @@
         
         CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"cornerRadius"];
         animation.duration = self.animationDuration;
-
+        
         
         currentPhotoView.zoomScale = 1.;
         currentPhotoView.imageView.frame     = rect;
@@ -634,7 +635,7 @@
 -(void) showFirstImageView
 {
     LCPhotoView * currentPhotoView = self.imageViews[self.currentIndex];
-
+    
     // Non reference view.
     if (!currentPhotoView.item.referenceView) {
         
@@ -645,7 +646,7 @@
             currentPhotoView.alpha = 1;
             
         } completion:^(BOOL finished) {
-           
+            
             self.firstShow = NO;
             
         }];
@@ -662,15 +663,11 @@
     CGRect targetFrame = currentPhotoView.imageView.frame;
     UIViewContentMode contentMode = currentPhotoView.imageView.contentMode;
     
-
     currentPhotoView.imageView.frame              = rect;
-    
-    CGFloat cor = item.referenceView.layer.cornerRadius;
     
     currentPhotoView.imageView.layer.cornerRadius = item.referenceView.layer.cornerRadius;
     currentPhotoView.imageView.contentMode        = item.referenceView.contentMode;
-
-
+    
     [self animations:^{
         
         CABasicAnimation * cornerRadiusAnimation = [CABasicAnimation animationWithKeyPath:@"cornerRadius"];
@@ -681,21 +678,31 @@
         [currentPhotoView.imageView.layer addAnimation:cornerRadiusAnimation forKey:@"cornerRadius"];
         
         currentPhotoView.imageView.layer.cornerRadius = 0;
-    
+        
         currentPhotoView.imageView.center             = self.center;
         currentPhotoView.imageView.bounds             = targetFrame;
-        currentPhotoView.imageView.contentMode        = contentMode;
-    
+        //currentPhotoView.imageView.contentMode        = contentMode;
+        
     } completion:^(BOOL finished) {
-       
+        
         self.firstShow = NO;
+        
+        [self animations:^{
+            
+            currentPhotoView.imageView.contentMode        = contentMode;
+            
+        } completion:^(BOOL finished) {
+            
+            ;
+            
+        }];
     }];
 }
 
 -(void) deletePhotoAtIndex:(NSInteger)index
 {
     NSMutableArray * items = (NSMutableArray *)self.items;
-
+    
     [items removeObjectAtIndex:index];
     
     LCPhotoView * imageView = self.imageViews[index];
@@ -705,7 +712,7 @@
         imageView.alpha = 0;
         
     } completion:^(BOOL finished) {
-       
+        
         [self.imageViews removeObjectAtIndex:index];
         
         [self relayoutSubViews];
@@ -722,7 +729,7 @@
     // Create new view.
     LCPhotoView * imageView = [[LCPhotoView alloc] init];
     imageView.browser = self;
-
+    
     imageView.item = item;
     imageView.alpha = 0;
     
@@ -739,7 +746,7 @@
         imageView.alpha = 1;
         
     } completion:^(BOOL finished) {
-       
+        
         [self.scrollView scrollRectToVisible:imageView.frame animated:YES];
     }];
 }
@@ -751,7 +758,7 @@
         if (animations) animations();
         
     } completion:^(BOOL finished) {
-       
+        
         if (completion) completion(finished);
         
     }];
