@@ -11,7 +11,7 @@
 > * Long press gesture.
 > * It supports custom additional views.
 > * Custom UI style support.
-> * Just two files. ：）
+> * Only two files. ：）
  
 ###Preview (GIF)
 -
