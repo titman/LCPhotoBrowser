@@ -1,8 +1,8 @@
-##LCPhotoBrowser 
+## LCPhotoBrowser 
 
 ![badge-pod] ![badge-languages] ![badge-platforms] ![badge-mit]
 
-###Features
+### Features
 > * It supports multiple photos.
 > * It supports zoom and gestures.
 > * It supports GIF.
@@ -13,13 +13,13 @@
 > * Custom UI style support.
 > * Only two files. ：）
  
-###Preview (GIF)
+### Preview (GIF)
 -
 ![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser1.gif?raw=false)  ![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser3.gif?raw=false)
 ![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser2.gif?raw=false)  ![image](https://github.com/titman/Pictures-of-the-warehouse/blob/master/LCPhotoBrowser4.gif?raw=false)
 -
 
-###LCPhotoBrowser + SDWebImageCache
+### LCPhotoBrowser + SDWebImageCache
 
 ```objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -42,7 +42,7 @@
 }
 ```
 
-###Update
+### Update
 
  - 1.1
     * Fix current index problem.
